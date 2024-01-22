@@ -1,0 +1,54 @@
+html {
+	margin: 0;
+}
+
+body {
+	background-color: #0A1107;
+	color: #266C0D;
+	font-family: Source Code Pro;
+	font-size: 32px;
+}
+
+h1 {
+	font-size: 48px;
+}
+
+h2 {
+	font-size: 30px;
+}
+
+button {
+	color: #266C0D;
+	font-size: 35px;
+	font-family: Source Code Pro;
+	background-color: #0A1107;
+	border: 2px solid #266C0D;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+#title {
+	margin-left: 8px;
+	margin-top: 14px;
+}
+
+#form tr td label {
+	padding-right: 2em;
+}
+
+#form tr td input {
+	color: #266C0D;
+	font-size: 18px;
+	height: 35px;
+	width: 24em;
+	background-color: #0A1107;
+	border: 2px solid #266C0D;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+
+#form tr td img {
+	max-height: 36px;
+	max-width: 36px;
+	vertical-align: middle;
+}

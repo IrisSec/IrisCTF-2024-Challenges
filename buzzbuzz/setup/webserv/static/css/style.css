@@ -1,0 +1,21 @@
+body {
+	margin: 10%;
+	background-color: #BEBEBE;
+	font-family: sans-serif;
+}
+
+button {
+	padding: 4px;
+}
+
+table {
+	background-color: #999999;
+}
+
+table th {
+	text-align: left;
+}
+
+table tr td {
+	padding: 4px;
+}

@@ -1,0 +1,48 @@
+name: 🚀
+run-name: 😨🙏
+on:
+  push:
+    branches: main
+jobs:
+  Rollout:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    steps:
+        - name: '✅➡️'
+          uses: 'actions/checkout@v4'
+          with:
+            fetch-depth: '2'
+            lfs: true 
+
+        - name: '✅➡️🗃️'
+          run: git lfs checkout
+
+        - name: '🔑☁️'
+          id: 'auth'
+          uses: 'google-github-actions/auth@v2'
+          with:
+            project_id: '${{ secrets.PROJECT_ID }}'
+            workload_identity_provider: '${{ secrets.WIF_PROVIDER }}'
+            service_account: '${{ secrets.WIF_SERVICE_ACCOUNT }}'
+
+        - name: '🛠️☁️'
+          uses: 'google-github-actions/setup-gcloud@v1'
+          with:
+            project_id: '${{ secrets.PROJECT_ID }}'
+
+        - name: '🛠️☁️☸️'
+          run: |
+            export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+            gcloud components install gke-gcloud-auth-plugin
+
+        - name: '🔑☁️💾'
+          run: |
+            aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+        - name: '🏁📝🫡'
+          run: |
+            cd $GITHUB_WORKSPACE
+            bash ./scripts/start_challenges.sh

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+{% set pageTitle = "HoneyToken Management" %}{% include "includes/header.html" %}
+
+<body>
+
+	<h1>HoneyToken Management</h1>
+	<p><b>irisctf{h0neyt0kens_4rent_0nly_us3d_by_th3_wh1te_hat5}</b></p>
+	<table id="hits">
+		<tr>
+			<th>Timestamp</th>
+			<th>IP Address</th>
+		</tr>
+		{% for hit in hits %}
+			<tr>
+				<td>{{ hit[0] }}</td>
+				<td>{{ hit[1] }}</td>
+			</tr>
+		{% endfor %}
+		<tr>
+			<td>2023-12-08 16:16:08</td>
+			<td>144.202.14.48</td>
+		</tr>
+	</table>
+
+</body>
+
+</html>
